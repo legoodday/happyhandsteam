@@ -39,7 +39,9 @@ Welcome!
 
 ## 4. 連結與圖片
 [這是一個連結](https://www.wikipedia.org)  
-![這是一張圖片](https://via.placeholder.com/150)
+
+![這是一張圖片](https://github.com/user-attachments/assets/2349c040-73f7-4169-888c-e01118ac310a)
+
 
 ## 5. 程式碼
 ### 行內程式碼
