@@ -1,68 +1,35 @@
-Welcome!
+# happyhandsteam
 
-- Hello!
-- Hi
+This template should help get you started developing with Vue 3 in Vite.
 
-# Markdown 語法範例
+## Recommended IDE Setup
 
-以下是一個常用的 Markdown 語法範例，涵蓋標題、段落、清單、圖片、連結和程式碼等元素：
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-# Markdown 常用語法範例
+## Customize configuration
 
-## 1. 標題
-# 標題 1
-## 標題 2
-### 標題 3
-#### 標題 4
-##### 標題 5
-###### 標題 6
+See [Vite Configuration Reference](https://vite.dev/config/).
 
-## 2. 段落
-這是一個普通段落，文字可以隨意撰寫。
+## Project Setup
 
-*斜體* 或 _斜體_  
-**粗體** 或 __粗體__  
-~~刪除線~~
-
-## 3. 清單
-### 無序清單
-- 項目 1
-- 項目 2
-  - 子項目 2.1
-  - 子項目 2.2
-- 項目 3
-
-### 有序清單
-1. 項目 1
-2. 項目 2
-3. 項目 3
-
-## 4. 連結與圖片
-[這是一個連結](https://www.wikipedia.org)  
-
-![這是一張圖片](https://github.com/user-attachments/assets/2349c040-73f7-4169-888c-e01118ac310a)
-
-
-## 5. 程式碼
-### 行內程式碼
-使用 \`符號包裹，例如：`console.log("Hello, Markdown!")`
-
-### 區塊程式碼
-```javascript
-// 這是一個 JavaScript 範例
-function greet() {
-  console.log("Hello, World!");
-}
+```sh
+npm install
 ```
 
-## 6. 表格
-| 標題 1 | 標題 2 | 標題 3 |
-|--------|--------|--------|
-| 資料 1 | 資料 2 | 資料 3 |
-| 資料 4 | 資料 5 | 資料 6 |
+### Compile and Hot-Reload for Development
 
-## 7. 引用
-> 這是一段引用文字。
+```sh
+npm run dev
+```
 
-## 8. 分隔線
----
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
