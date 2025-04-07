@@ -1,2 +1,12 @@
 @import './base.css';
 
+
+@media (max-width: 768px) {
+  .fat-only {
+    display: none;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}

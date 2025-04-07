@@ -6,9 +6,16 @@ main.ui.segment.container
     a.ui.orange.large.button(@click="scrollToAction") 立即行動
       i.chevron.right.icon
 
+  img.sight.clickable(src="../assets/sight01.jpeg" @click="showFullImage")
 
-  p 背景：我們支持居住在台東長濱一帶的族人與居民，我們反對「東成陸域風力發電計畫」。東成風力發電計畫選址於海邊、農田和我們居住的區域附近，但至今風電商未與在地居民充分溝通，在社區不知情與沒有集體共識下，竟然已選定設立25處風機點，甚至在國小附近，風機與建築物相距不到40公尺！
-
+  p(style="position: relative; top: 1em;") 背景：我們支持居住在台東長濱一帶的族人與居民，我們反對「東成陸域風力發電計畫」。東成風力發電計畫選址於海邊、農田和我們居住的區域附近，但至今風電商未與在地居民充分溝通，在社區不知情與沒有集體共識下，竟然已選定設立25處風機點，甚至在國小附近，風機與建築物相距不到40公尺！
+  p
+    br.fat-only
+    br.fat-only
+    br.fat-only
+    br.fat-only
+    br.fat-only
+    br.fat-only
   h2.ui.header
     i.edit.icon
     | 反風電計畫說明
@@ -100,7 +107,10 @@ main.ui.segment.container
       i.line.icon#line-icon L
       | 分享到 LINE
 
-
+  .fullscreen-image-container(v-if="isFullImageVisible" @click="hideFullImage")
+    .fullscreen-image-wrapper
+      img.fullscreen-image(:src="currentFullImage")
+      .close-button(@click.stop="hideFullImage") ×
 
 </template>
 
@@ -147,6 +157,20 @@ export default {
 
     const showDetails = ref(false)
 
+    const isFullImageVisible = ref(false)
+    const currentFullImage = ref('')
+
+    const showFullImage = (event) => {
+      currentFullImage.value = event.target.src
+      isFullImageVisible.value = true
+      document.body.style.overflow = 'hidden' // 防止背景滾動
+    }
+
+    const hideFullImage = () => {
+      isFullImageVisible.value = false
+      document.body.style.overflow = '' // 恢復背景滾動
+    }
+
     onMounted(() => {
       document.title = '請協助捍衛長濱鄉美麗海岸線'
       document.querySelector('meta[name="description"]')?.setAttribute('content', '拒絕「東成陸域風力發電計畫」破壞台東沿海世界級美景及生態環境')
@@ -167,7 +191,11 @@ export default {
       shareToTwitter,
       shareToLine,
       actions,
-      scrollToAction
+      scrollToAction,
+      isFullImageVisible,
+      currentFullImage,
+      showFullImage,
+      hideFullImage
     }
   }
 }
@@ -255,4 +283,76 @@ h4.ui.header, p {
 .red.star::after {
   content: ' *';
 }
+
+.sight {
+  width: 26.18%;
+  min-width: 250px;
+  float: left;
+
+  object-fit: cover;
+  margin-right: 1em;
+}
+
+.sight:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .sight {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+  }
+}
+
+.fullscreen-image-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.fullscreen-image-wrapper {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border: 2px solid white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.close-button {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  color: black;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.close-button:hover {
+  background-color: #f0f0f0;
+}
+
 </style>
