@@ -113,7 +113,7 @@ import { ref, onMounted, computed } from 'vue'
 
 export default {
   setup() {
-    const url = 'https://happyhandsteam.github.io/action'
+    const url = 'https://legoodday.github.io/happyhandsteam/action'
     const title = '請協助捍衛長濱鄉美麗海岸線'
     const description = '拒絕「東成陸域風力發電計畫」破壞台東沿海世界級美景及生態環境'
 
