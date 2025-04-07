@@ -3,7 +3,7 @@ main.ui.segment.container
   .ui.warning.message
     .header 請協助捍衛長濱鄉美麗海岸線
     p 拒絕「東成陸域風力發電計畫」破壞台東沿海世界級美景及生態環境
-    a.ui.orange.large.button(href="#action_now") 立即行動
+    a.ui.orange.large.button(@click="scrollToAction") 立即行動
       i.chevron.right.icon
 
 
@@ -117,6 +117,13 @@ export default {
     const title = '請協助捍衛長濱鄉美麗海岸線'
     const description = '拒絕「東成陸域風力發電計畫」破壞台東沿海世界級美景及生態環境'
 
+    // 新增滾動到行動區塊的方法
+    const scrollToAction = () => {
+      const element = document.getElementById('action_now')
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
 
     const shareToFB = () => {
       window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`)
@@ -140,139 +147,6 @@ export default {
 
     const showDetails = ref(false)
 
-    // 新增 computed property 來計算今日行動
-    const todayActions = computed(() => {
-      const today = new Date()
-      return actions.value.filter(action => {
-        console.log(action.datetime)
-        console.log(action.datetime.split(' ')[0])
-        const actionDate = new Date(action.datetime.split(' ')[0])
-        console.log(actionDate)
-        console.log(today)
-
-        return actionDate.getFullYear() === today.getFullYear() &&
-               actionDate.getMonth() === today.getMonth() &&
-               actionDate.getDate() === today.getDate()
-      })
-    })
-
-    // 監聽資料變化
-    onMounted(() => {
-      /* onValue(actionsRef, (snapshot) => {
-        const data = snapshot.val()
-        if (data) {
-          actions.value = Object.values(data) as Action[]
-          console.log(actions.value)
-        }
-      }) */
-    })
-
-    // 記錄行動
-    const logAction = () => {
-      console.log(myLegislator.value)
-      console.log(userName.value)
-      console.log(method.value)
-      console.log(message.value)
-      if (!myLegislator.value || !userName.value || !method.value) {
-        window.alert('請填寫完整表單')
-        return
-      }
-      const now = new Date()
-
-      // 將方法轉換為小寫
-      let myMethod;
-      if (method.value === '電話') {
-        myMethod = 'phone'
-      } else if (method.value === 'Email') {
-        myMethod = 'email'
-      } else if (method.value === 'Facebook') {
-        myMethod = 'facebook'
-      }
-
-      push(actionsRef, {
-        datetime: now.toLocaleString('zh-TW'),
-        name: userName.value,
-        legislator: myLegislator.value,
-        action: myMethod,
-        message: message.value || '請繼續接力關注此案'
-      }).then(() => {
-        window.alert('行動記錄已成功保存')
-      }).catch((error) => {
-        window.alert('行動記錄保存失敗: ' + error.message)
-      })
-
-      return
-    }
-
-    // 計算每位委員被打電話的次數
-    const getCallCount = (legislatorName: string) => {
-      const count = actions.value.filter(action =>
-        action.name !== 'test' &&
-        action.legislator === legislatorName
-      ).length
-      return Math.min(Math.round((count / 100) * 100), 100)
-    }
-
-    // 新增每週統計
-    const weeklyStats = computed(() => {
-      const stats = {}
-      const today = new Date()
-
-      // 初始化過去7天的數據
-      for (let i = 6; i >= 0; i--) {
-        const date = new Date(today)
-        date.setDate(date.getDate() - i)
-        stats[date.toISOString().split('T')[0]] = 0
-      }
-
-      // 統計行動數據
-      actions.value.forEach(action => {
-        if (action.name === 'test') return
-
-        // 解析 "2024/12/19 下午9:39:21" 格式的日期
-        const [datePart] = action.datetime.split(' ')
-        const [year, month, day] = datePart.split('/')
-        const actionDateStr = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
-
-        if (stats[actionDateStr] !== undefined) {
-          stats[actionDateStr]++
-        }
-      })
-
-      return stats
-    })
-
-    // 格式化日期顯示
-    const formatDate = (dateStr: string) => {
-      const date = new Date(dateStr)
-      return `${date.getMonth() + 1}/${date.getDate()}`
-    }
-
-
-
-    const copyMessage = async () => {
-      try {
-        await navigator.clipboard.writeText(messageTemplate1.value)
-        window.alert('訊息已複製到剪貼簿')
-      } catch (err) {
-        console.error('複製失敗:', err)
-      }
-    }
-
-    // 下載行動記錄, 以JSON格式
-    const downloadAction = () => {
-      // 排版一下，至少要有換行
-      let jsonString = JSON.stringify(actions.value)
-        .replace(/,/g, '\n,')
-        .replace(/\}\s+,/g, '},')
-        .replace(/,\{/g, ',\n{');
-      const blob = new Blob([jsonString], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'action_record.json';
-      a.click();
-    }
 
 
 
@@ -290,13 +164,7 @@ export default {
       shareToTwitter,
       shareToLine,
       actions,
-      todayActions,
-      logAction,
-      getCallCount,
-      weeklyStats,
-      formatDate,
-      copyMessage,
-      downloadAction
+      scrollToAction
     }
   }
 }
