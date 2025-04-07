@@ -22,6 +22,7 @@ main.ui.segment.container
 
   .ui.segments
     .ui.segment
+      img.sight.right.clickable(src="../assets/sight00.jpeg" @click="showFullImage")
       h3.ui.header 提議內容或建議事項
       p 台東沿海擁有無價的世界級美麗景觀，如今被財團相中，將在成功、長濱設置25大型座風機！
       p 過去幾年這條路我來來回回無數次，上山下海，如果不理解長濱、成功、東河的美，那就不能稱為台灣人，這麼乾淨美麗的地方，不應該被破壞。
@@ -293,6 +294,12 @@ h4.ui.header, p {
   margin-right: 1em;
 }
 
+.sight.right {
+  float: right;
+  margin-left: 1em;
+  margin-right: 0;
+}
+
 .sight:hover {
   opacity: 0.8;
   transition: opacity 0.3s ease;
@@ -301,7 +308,7 @@ h4.ui.header, p {
 @media (max-width: 768px) {
   .sight {
     width: 100%;
-    float: none;
+    float: none !important;
     margin-right: 0;
   }
 }
