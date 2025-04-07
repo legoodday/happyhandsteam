@@ -147,7 +147,10 @@ export default {
 
     const showDetails = ref(false)
 
-
+    onMounted(() => {
+      document.title = '請協助捍衛長濱鄉美麗海岸線'
+      document.querySelector('meta[name="description"]')?.setAttribute('content', '拒絕「東成陸域風力發電計畫」破壞台東沿海世界級美景及生態環境')
+    })
 
 
     return {
