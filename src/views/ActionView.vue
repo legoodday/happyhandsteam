@@ -8,7 +8,9 @@ main.ui.segment.container
 
   img.sight.clickable(src="../assets/sight01.jpeg" @click="showFullImage")
 
-  p(style="position: relative; top: 1em;") 背景：我們支持居住在台東長濱一帶的族人與居民，我們反對「東成陸域風力發電計畫」。東成風力發電計畫選址於海邊、農田和我們居住的區域附近，但至今風電商未與在地居民充分溝通，在社區不知情與沒有集體共識下，竟然已選定設立25處風機點，甚至在國小附近，風機與建築物相距不到40公尺！
+  p(style="position: relative; top: 1em;") 背景：我們支持居住在台東長濱一帶的族人與居民，我們反對「東成陸域風力發電計畫」。
+    a(href="https://eiadoc.moenv.gov.tw/eiaforum/30_View.aspx?para=41D98611606F35A35A4DEB319C1DDDBAE5B5D4CAB96A864F48AAEFDFA9DA26D5" target="_blank") 東成風力發電計畫
+    | 選址於海邊、農田和我們居住的區域附近，但至今風電商未與在地居民充分溝通，在社區不知情與沒有集體共識下，竟然已選定設立25處風機點，甚至在國小附近，風機與建築物相距不到40公尺！
   p
     br.fat-only
     br.fat-only
