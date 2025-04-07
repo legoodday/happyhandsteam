@@ -292,6 +292,9 @@ h4.ui.header, p {
 
   object-fit: cover;
   margin-right: 1em;
+
+
+  border-radius: 10px;
 }
 
 .sight.right {
