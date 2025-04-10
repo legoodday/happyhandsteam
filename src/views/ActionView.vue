@@ -6,7 +6,7 @@ main.ui.segment.container
     a.ui.orange.large.button(@click="scrollToAction") 立即行動
       i.chevron.right.icon
 
-  img.sight.clickable(src="../assets/sight01.jpeg" @click="showFullImage")
+  img.sight.left.clickable(src="../assets/sight01.jpeg" @click="showFullImage")
 
   p(style="position: relative; top: 1em;") 背景：我們支持居住在台東長濱一帶的族人與居民，我們反對「東成陸域風力發電計畫」。
     a(href="https://eiadoc.moenv.gov.tw/eiaforum/30_View.aspx?para=41D98611606F35A35A4DEB319C1DDDBAE5B5D4CAB96A864F48AAEFDFA9DA26D5" target="_blank") 東成風力發電計畫
@@ -311,9 +311,10 @@ h4.ui.header, p {
 }
 
 @media (max-width: 768px) {
-  .sight {
-    width: 100%;
+  .sight.right, .sight.left {
+    width: 100% !important;
     float: none !important;
+    margin-left: 0;
     margin-right: 0;
   }
 }
